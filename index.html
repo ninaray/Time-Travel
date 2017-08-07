@@ -63,7 +63,7 @@ timelinesvg.append("line") // 2016
         .attr("y2", 790)
         .style("stroke", "black");        
 
-timelinesvg.append("line") // 2020
+timelinesvg.append("line") // Present day
         .style("stroke-dasharray", ("3, 3"))
         .attr("x1", 800)
         .attr("x2", 800)
@@ -71,15 +71,57 @@ timelinesvg.append("line") // 2020
         .attr("y2", 790)
         .style("stroke", "black");     
     
-/** TIMELINE BACKGROUNDS -------------------------------*/
+/** NARRATIVE TIMELINE -------------------------------*/
+    
+var narrativeOne;
+var narrativeTwo;
+var narrativeThree;
+var narrativeFour;
+var narrativeFive;
     
 // Narrative timeline rectangle
-timelinesvg.append("rect")
+timelinesvg.append("rect") // Prime timeline
             .attr("x", 100)
             .attr("y", 150)
-            .attr("width", 800)
+            .attr("width", 100)
             .attr("height", 10)
-            .style("fill", "#F3DAD8");
+            .style("fill", "#F8EAE9");
+narrativeOne = timelinesvg.append("rect") // T1
+            .attr("x", 200)
+            .attr("y", 150)
+            .attr("width", 150)
+            .attr("height", 10)
+            .style("fill", "#E0D277");
+narrativeTwo = timelinesvg.append("rect") // T2
+            .attr("x", 350)
+            .attr("y", 150)
+            .attr("width", 100)
+            .attr("height", 10)
+            .style("fill", "#79D08B");
+narrativeThree = timelinesvg.append("rect") // T3
+            .attr("x", 450)
+            .attr("y", 150)
+            .attr("width", 100)
+            .attr("height", 10)
+            .style("fill", "#5298C4");
+narrativeFour = timelinesvg.append("rect") // T4
+            .attr("x", 550)
+            .attr("y", 150)
+            .attr("width", 100)
+            .attr("height", 10)
+            .style("fill", "#4740AB");
+narrativeFive = timelinesvg.append("rect") // T5
+            .attr("x", 650)
+            .attr("y", 150)
+            .attr("width", 150)
+            .attr("height", 10)
+            .style("fill", "#906DAC");
+narrativeFuture = timelinesvg.append("rect") // Future
+            .attr("x", 800)
+            .attr("y", 150)
+            .attr("width", 100)
+            .attr("height", 10)
+            .style("fill", "#F8EAE9");
 // Narrative timeline text
 timelinesvg.append("text")
         .attr("x", 600)
@@ -88,13 +130,97 @@ timelinesvg.append("text")
         .text("NARRATIVE TIMELINE")
         .style("fill", "#2a2a2a");
     
-// Timeline 1 rectangle
-timelinesvg.append("rect")
-            .attr("x", 250)
+// Hover circles - Travel points
+timelinesvg.append("circle") // T1 Creation
+        .attr("cx", 200)
+        .attr("cy", 155)
+        .attr("r", 10)
+        .style("fill", "white")
+        .style("stroke", "black");
+timelinesvg.append("circle") // T2 Creation
+        .attr("cx", 350)
+        .attr("cy", 155)
+        .attr("r", 10)
+        .style("fill", "white")
+        .style("stroke", "black");
+timelinesvg.append("circle") // T3 Creation
+        .attr("cx", 450)
+        .attr("cy", 155)
+        .attr("r", 10)
+        .style("fill", "white")
+        .style("stroke", "black");
+timelinesvg.append("circle") // T4 Creation
+        .attr("cx", 550)
+        .attr("cy", 155)
+        .attr("r", 10)
+        .style("fill", "white")
+        .style("stroke", "black")
+        .on("mouseover", function(d) {
+            narrativeOne.style("fill-opacity", "0.5");
+            narrativeTwo.style("fill-opacity", "0.5");
+            narrativeThree.style("fill-opacity", "0.5");
+            narrativeFive.style("fill-opacity", "0.5");
+    
+            timelineOne.style("fill-opacity", "0.5");
+            timelineTwo.style("fill-opacity", "0.5");
+            timelineThree.style("fill-opacity", "0.5");
+            timelineFive.style("fill-opacity", "0.5");
+        })
+        .on("mouseout", function(d) {
+            narrativeOne.style("fill-opacity", "1");
+            narrativeTwo.style("fill-opacity", "1");
+            narrativeThree.style("fill-opacity", "1");
+            narrativeFive.style("fill-opacity", "1");
+    
+            timelineOne.style("fill-opacity", "1");
+            timelineTwo.style("fill-opacity", "1");
+            timelineThree.style("fill-opacity", "1");
+            timelineFive.style("fill-opacity", "1");
+        });
+timelinesvg.append("circle") // T5 Creation
+        .attr("cx", 650)
+        .attr("cy", 155)
+        .attr("r", 10)
+        .style("fill", "white")
+        .style("stroke", "black")
+        .on("mouseover", function(d) {
+            narrativeOne.style("fill-opacity", "0.5");
+            narrativeTwo.style("fill-opacity", "0.5");
+            narrativeThree.style("fill-opacity", "0.5");
+            narrativeFour.style("fill-opacity", "0.5");
+    
+            timelineOne.style("fill-opacity", "0.5");
+            timelineTwo.style("fill-opacity", "0.5");
+            timelineThree.style("fill-opacity", "0.5");
+            timelineFour.style("fill-opacity", "0.5");
+        })
+        .on("mouseout", function(d) {
+            narrativeOne.style("fill-opacity", "1");
+            narrativeTwo.style("fill-opacity", "1");
+            narrativeThree.style("fill-opacity", "1");
+            narrativeFour.style("fill-opacity", "1");
+    
+            timelineOne.style("fill-opacity", "1");
+            timelineTwo.style("fill-opacity", "1");
+            timelineThree.style("fill-opacity", "1");
+            timelineFour.style("fill-opacity", "1");
+        });
+    
+/** SPIN OFF TIMELINES -------------------------------*/
+    
+var timelineOne;
+var timelineTwo;
+var timelineThree;
+var timelineFour;
+var timelineFive;
+    
+// Timeline 1 rectangle - Barry prevents the Tsunami
+timelineOne = timelinesvg.append("rect")
+            .attr("x", 200)
             .attr("y", 250)
-            .attr("width", 100)
+            .attr("width", 150)
             .attr("height", 10)
-            .style("fill", "#F3DAD8");
+            .style("fill", "#E0D277");
 // Timeline 1 text
 timelinesvg.append("text")
         .attr("x", 600)
@@ -103,13 +229,13 @@ timelinesvg.append("text")
         .text("FIRST SPIN-OFF TIMELINE")
         .style("fill", "#2a2a2a");
     
-// Timeline 2 rectangle
-timelinesvg.append("rect")
+// Timeline 2 rectangle - Barry tries to save his mother
+timelineTwo = timelinesvg.append("rect")
             .attr("x", 350)
             .attr("y", 350)
             .attr("width", 100)
             .attr("height", 10)
-            .style("fill", "#F3DAD8");
+            .style("fill", "#79D08B");
 // Timeline 2 text
 timelinesvg.append("text")
         .attr("x", 600)
@@ -118,13 +244,13 @@ timelinesvg.append("text")
         .text("SECOND SPIN-OFF TIMELINE")
         .style("fill", "#2a2a2a");        
 
-// Timeline 3 rectangle
-timelinesvg.append("rect")
-            .attr("x", 100)
+// Timeline 3 rectangle - Barry talks to Dr.Wells
+timelineThree = timelinesvg.append("rect")
+            .attr("x", 450)
             .attr("y", 450)
-            .attr("width", 800)
+            .attr("width", 100)
             .attr("height", 10)
-            .style("fill", "#F3DAD8");
+            .style("fill", "#5298C4");
 // Timeline 3 text
 timelinesvg.append("text")
         .attr("x", 600)
@@ -133,50 +259,36 @@ timelinesvg.append("text")
         .text("THIRD SPIN-OFF TIMELINE")
         .style("fill", "#2a2a2a");        
     
-// Timeline 4 rectangle
-timelinesvg.append("rect")
-            .attr("x", 100)
+// Timeline 4 rectangle - Barry creates Flashpoint
+timelineFour = timelinesvg.append("rect")
+            .attr("x", 550)
             .attr("y", 550)
-            .attr("width", 800)
+            .attr("width", 100)
             .attr("height", 10)
-            .style("fill", "#F3DAD8");
+            .style("fill", "#4740AB");
 // Timeline 4 text
 timelinesvg.append("text")
         .attr("x", 600)
         .attr("y", 580)
         .attr("font-size", 20)
-        .text("FOURTH SPIN-OFF TIMELINE")
+        .text("FLASHPOINT")
         .style("fill", "#2a2a2a");   
     
 // Timeline 5 rectangle
-timelinesvg.append("rect")
-            .attr("x", 100)
+timelineFive = timelinesvg.append("rect")
+            .attr("x", 650)
             .attr("y", 650)
-            .attr("width", 800)
+            .attr("width", 150)
             .attr("height", 10)
-            .style("fill", "#F3DAD8");
+            .style("fill", "#906DAC");
 // Timeline 5 text
 timelinesvg.append("text")
         .attr("x", 600)
         .attr("y", 680)
         .attr("font-size", 20)
-        .text("'FLASHPOINT'")
+        .text("FIXING FLASHPOINT")
         .style("fill", "#2a2a2a");
-    
-// Timeline 6 rectangle
-timelinesvg.append("rect")
-            .attr("x", 100)
-            .attr("y", 750)
-            .attr("width", 800)
-            .attr("height", 10)
-            .style("fill", "#F3DAD8");
-// Timeline 6 text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 780)
-        .attr("font-size", 20)
-        .text("SIXTH SPIN-OFF TIMELINE")
-        .style("fill", "#2a2a2a");       
+      
 </script>
 </body>
 </html>
