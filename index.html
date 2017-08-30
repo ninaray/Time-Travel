@@ -3,8 +3,8 @@
     <!-- Import d3 version 4-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     
-    <!-- Import Catamaran font-->
-    <link href='https://fonts.googleapis.com/css?family=Catamaran' rel='stylesheet' type='text/css'/>
+    <!-- Import Slabo 27px font-->
+    <link href='https://fonts.googleapis.com/css?family=Slabo 27px' rel='stylesheet' type='text/css'/>
     
     <title>The Flash Multiverse</title>
     
@@ -15,7 +15,30 @@
     }
     
     body {
-        font-family: "Catamaran";
+        background-color: #FCF8F7;
+        font-family: "Slabo 27px";
+        margin: 0px;
+    }
+    
+    div.tooltip {	
+        position: absolute;			
+        text-align: center;			
+        width: 60px;					
+        height: 28px;					
+        padding: 2px;				
+        font: 12px sans-serif;		
+        background: lightsteelblue;	
+        border: 0px;		
+        border-radius: 8px;			
+        pointer-events: none;			
+    }
+    
+    #noraDeathText {
+        color: #A0C1B9;
+        width: 200px;
+        font-size: 13px;
+        margin-top: -510px;
+        margin-left: 85px;
     }
     
 </style>
@@ -23,29 +46,157 @@
     
 <body>
     <!-- Create 'main' svg -->
-    <svg id="main" height="800" width="1000"></svg>
+    <svg id="main" height="700" width="1200">
+        <div id="noraDeathText">Prior to the events of the show, Barry Allen followed the Reverse Flash back in time to <b>March 18, 2000</b> in order to prevent his mother's death. He was unsuccessful, and this created the timeline that opens the show.</div>
+    </svg>
 
 <script>
     
 /** MAIN SVG SETUP ----------------------------------- */    
-timelinesvg = d3.select("#main");
+
+svg = d3.select("#main");
+timelinesvg = svg.append("g");
+timelinesvg.attr("transform", "translate(125,200)");
     
 // 'main' svg title
 timelinesvg.append("text")
         .attr("x", 280)
-        .attr("y", 80)
-        .attr("font-size", 80)
+        .attr("y", 0)
+        .attr("font-size", 60)
         .text("All Timelines")
         .style("fill", "#2a2a2a");
-    
+        
 /** YEAR MARKERS ------------------------------------- */    
 timelinesvg.append("line") // March 18, 2000
         .style("stroke-dasharray", ("3, 3"))
-        .attr("x1", 150)
-        .attr("x2", 150)
+        .attr("x1", 200)
+        .attr("x2", 200)
+        .attr("y1", 155)
+        .attr("y2", 790)
+        .style("stroke", "black");        
+    
+timelinesvg.append("line") // S1E15 - "Out of Time"
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 352)
+        .attr("x2", 352)
         .attr("y1", 100)
         .attr("y2", 790)
-        .style("stroke", "black");
+        .style("stroke", "#C0C0C0")
+timelinesvg.append("line")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 352)
+        .attr("x2", 410)
+        .attr("y1", 100)
+        .attr("y2", 40)
+        .style("stroke", "#C0C0C0"); 
+    
+timelinesvg.append("text")
+        .attr("x", 170)
+        .attr("y", 315)
+        .attr("font-size", 15)
+        .style("width", 30)
+        .attr("transform", "rotate(-46)")
+        .text("\"Out of Time\"");       
+    
+timelinesvg.append("line") // S1E23 - "Fast Enough"
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 433)
+        .attr("x2", 433)
+        .attr("y1", 100)
+        .attr("y2", 790)
+        .style("stroke", "#C0C0C0");
+timelinesvg.append("line")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 433)
+        .attr("x2", 494)
+        .attr("y1", 100)
+        .attr("y2", 37)
+        .style("stroke", "#C0C0C0"); 
+    
+timelinesvg.append("text")
+        .attr("x", 228)
+        .attr("y", 373)
+        .attr("font-size", 15)
+        .style("width", 30)
+        .attr("transform", "rotate(-46)")
+        .text("\"Fast Enough\"");       
+    
+timelinesvg.append("line") // S2E17 - "Flash Back"
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 605)
+        .attr("x2", 605)
+        .attr("y1", 100)
+        .attr("y2", 790)
+        .style("stroke", "#C0C0C0"); 
+timelinesvg.append("line")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 605)
+        .attr("x2", 662)
+        .attr("y1", 100)
+        .attr("y2", 41)
+        .style("stroke", "#C0C0C0"); 
+    
+timelinesvg.append("text")
+        .attr("x", 348)
+        .attr("y", 497)
+        .attr("font-size", 15)
+        .style("width", 30)
+        .attr("transform", "rotate(-46)")
+        .text("\"Flash Back\"");       
+    
+timelinesvg.append("line") // S2E23 - "The Race of His Life"
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 665)
+        .attr("x2", 665)
+        .attr("y1", 100)
+        .attr("y2", 790)
+        .style("stroke", "#C0C0C0");
+timelinesvg.append("line")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 665)
+        .attr("x2", 762)
+        .attr("y1", 100)
+        .attr("y2", 1)
+        .style("stroke", "#C0C0C0"); 
+    
+timelinesvg.append("text")
+        .attr("x", 391)
+        .attr("y", 540)
+        .attr("font-size", 15)
+        .style("width", 30)
+        .attr("transform", "rotate(-46)")
+        .text("\"The Race of His Life\"");       
+    
+timelinesvg.append("line") // S3E01 - "Flashpoint"
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 715)
+        .attr("x2", 715)
+        .attr("y1", 100)
+        .attr("y2", 790)
+        .style("stroke", "#C0C0C0"); 
+timelinesvg.append("line")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 715)
+        .attr("x2", 772)
+        .attr("y1", 100)
+        .attr("y2", 41)
+        .style("stroke", "#C0C0C0");   
+    
+timelinesvg.append("text")
+        .attr("x", 425)
+        .attr("y", 577)
+        .attr("font-size", 15)
+        .style("width", 30)
+        .attr("transform", "rotate(-46)")
+        .text("\"Flashpoint\"");     
+
+timelinesvg.append("line") // Present day
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("x1", 800)
+        .attr("x2", 800)
+        .attr("y1", 155)
+        .attr("y2", 790)
+        .style("stroke", "black"); 
     
 timelinesvg.append("line") // 2024
         .style("stroke-dasharray", ("3, 3"))
@@ -55,102 +206,232 @@ timelinesvg.append("line") // 2024
         .attr("y2", 790)
         .style("stroke", "black");    
     
-timelinesvg.append("line") // 2016
-        .style("stroke-dasharray", ("3, 3"))
-        .attr("x1", 200)
-        .attr("x2", 200)
-        .attr("y1", 100)
-        .attr("y2", 790)
-        .style("stroke", "black");        
-
-timelinesvg.append("line") // Present day
-        .style("stroke-dasharray", ("3, 3"))
-        .attr("x1", 800)
-        .attr("x2", 800)
-        .attr("y1", 100)
-        .attr("y2", 790)
-        .style("stroke", "black");     
-    
-/** NARRATIVE TIMELINE -------------------------------*/
+/** TIMELINE VARIABLES -------------------------------*/
     
 var narrativeOne;
 var narrativeTwo;
 var narrativeThree;
 var narrativeFour;
 var narrativeFive;
+var narrativeSix;
     
-// Narrative timeline rectangle
-timelinesvg.append("rect") // Prime timeline
-            .attr("x", 100)
-            .attr("y", 150)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#F8EAE9");
+var timelineOne;
+var timelineTwo;
+var timelineThree;
+var timelineFour;
+var timelineFive;
+var timelineSix;
+    
+/* NARRATIVE TIMELINE --------------------------- */
+timelinesvg.append("line") // Past
+            .attr("x1", 0)
+            .attr("y1", 155)
+            .attr("x2", 1000)
+            .attr("y2", 155)
+            .attr("stroke-width", 10)
+            .attr("stroke", "#F8EAE9")
+            .style("stroke-dasharray", ("20, 5"));   
+ 
+timelinesvg.append("text")
+        .attr("x", -20)
+        .attr("y", 155)
+        .attr("font-size", 20)
+        .style("width", 30)
+        .style("fill", "black")
+        .text("NARRATIVE TIMELINE");       
+    
+// ANNOTATIONS
+var noraDeathPrime = timelinesvg.append("g"); // Nora's death
+noraDeathPrime.append("line")  
+            .attr("x1", 150)
+            .attr("y1", 100)
+            .attr("x2", 200)
+            .attr("y2", 155)
+            .style("stroke", "#70A0AF")
+            .style("stroke-width", 2)
+noraDeathPrime.append("line")  
+            .attr("x1", -50)
+            .attr("y1", 100)
+            .attr("x2", 150)
+            .attr("y2", 100)
+            .style("stroke", "#70A0AF")
+            .style("stroke-width", 2)
+
+
+var presentDay = timelinesvg.append("g");
+presentDay.append("line") // Present day
+        .attr("x1", 800)
+        .attr("x2", 800)
+        .attr("y1", 153)
+        .attr("y2", 110)
+        .style("stroke", "#70A0AF")
+        .style("stroke-width", 2);
+presentDay.append("line")
+        .attr("x1", 770)
+        .attr("x2", 830)
+        .attr("y1", 110)
+        .attr("y2", 110)
+        .style("stroke", "#70A0AF")
+        .style("stroke-width", 2);     
+    
+presentDay.append("text")
+        .attr("x", 769)
+        .attr("y", 100)
+        .attr("font-size", 13)
+        .style("width", 30)
+        .style("fill", "#A0C1B9")
+        .text("Present Day");    
+    
+// tooltip
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);    
+/* TIMELINE SPIN-OFF ONE ------------------------ */   
+    
 narrativeOne = timelinesvg.append("rect") // T1
             .attr("x", 200)
             .attr("y", 150)
-            .attr("width", 150)
+            .attr("width", 152)
             .attr("height", 10)
             .style("fill", "#E0D277");
-narrativeTwo = timelinesvg.append("rect") // T2
-            .attr("x", 350)
-            .attr("y", 150)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#79D08B");
-narrativeThree = timelinesvg.append("rect") // T3
-            .attr("x", 450)
-            .attr("y", 150)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#5298C4");
-narrativeFour = timelinesvg.append("rect") // T4
-            .attr("x", 550)
-            .attr("y", 150)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#4740AB");
-narrativeFive = timelinesvg.append("rect") // T5
-            .attr("x", 650)
-            .attr("y", 150)
-            .attr("width", 150)
-            .attr("height", 10)
-            .style("fill", "#906DAC");
-narrativeFuture = timelinesvg.append("rect") // Future
-            .attr("x", 800)
-            .attr("y", 150)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#F8EAE9");
-// Narrative timeline text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 180)
-        .attr("font-size", 20)
-        .text("NARRATIVE TIMELINE")
-        .style("fill", "#2a2a2a");
     
-// Hover circles - Travel points
-timelinesvg.append("circle") // T1 Creation
+timelinesvg.append("circle") // T1 Hover
         .attr("cx", 200)
         .attr("cy", 155)
         .attr("r", 10)
         .style("fill", "white")
-        .style("stroke", "black");
-timelinesvg.append("circle") // T2 Creation
-        .attr("cx", 350)
+        .style("stroke", "black")
+        .on("mouseover", function(d) {
+            narrativeFive.style("fill-opacity", "0.5");
+            narrativeTwo.style("fill-opacity", "0.5");
+            narrativeThree.style("fill-opacity", "0.5");
+            narrativeFour.style("fill-opacity", "0.5");
+            narrativeSix.style("fill-opacity", "0.5");    
+    
+            timelineFive.style("fill-opacity", "0.5");
+            timelineTwo.style("fill-opacity", "0.5");
+            timelineThree.style("fill-opacity", "0.5");
+            timelineFour.style("fill-opacity", "0.5");
+            timelineSix.style("fill-opacity", "0.5");    
+        })
+        .on("mouseout", function(d) {
+            narrativeFive.style("fill-opacity", "1");
+            narrativeTwo.style("fill-opacity", "1");
+            narrativeThree.style("fill-opacity", "1");
+            narrativeFour.style("fill-opacity", "1");
+            narrativeSix.style("fill-opacity", "1");    
+    
+            timelineFive.style("fill-opacity", "1");
+            timelineTwo.style("fill-opacity", "1");
+            timelineThree.style("fill-opacity", "1");
+            timelineFour.style("fill-opacity", "1");
+            timelineSix.style("fill-opacity", "1");    
+    
+        });    
+        
+/* TIMELINE SPIN-OFF TWO ------------------------ */    
+narrativeTwo = timelinesvg.append("rect") // T2
+            .attr("x", 352)
+            .attr("y", 150)
+            .attr("width", 81)
+            .attr("height", 10)
+            .style("fill", "#79D08B");
+    
+timelinesvg.append("circle") // T2 Hover
+        .attr("cx", 352)
         .attr("cy", 155)
         .attr("r", 10)
         .style("fill", "white")
-        .style("stroke", "black");
-timelinesvg.append("circle") // T3 Creation
-        .attr("cx", 450)
+        .style("stroke", "black")
+        .on("mouseover", function(d) {
+            narrativeOne.style("fill-opacity", "0.5");
+            narrativeFive.style("fill-opacity", "0.5");
+            narrativeThree.style("fill-opacity", "0.5");
+            narrativeFour.style("fill-opacity", "0.5");
+            narrativeSix.style("fill-opacity", "0.5");    
+    
+            timelineFive.style("fill-opacity", "0.5");
+            timelineThree.style("fill-opacity", "0.5");
+            timelineFour.style("fill-opacity", "0.5");
+            timelineSix.style("fill-opacity", "0.5");    
+        })
+        .on("mouseout", function(d) {
+            narrativeOne.style("fill-opacity", "1");
+            narrativeFive.style("fill-opacity", "1");
+            narrativeThree.style("fill-opacity", "1");
+            narrativeFour.style("fill-opacity", "1");
+            narrativeSix.style("fill-opacity", "1");    
+    
+            timelineFive.style("fill-opacity", "1");
+            timelineThree.style("fill-opacity", "1");
+            timelineFour.style("fill-opacity", "1");
+            timelineSix.style("fill-opacity", "1");    
+        });
+    
+timelineTwo = timelinesvg.append("rect") // Solo timeline
+            .attr("x", 352)
+            .attr("y", 200)
+            .attr("width", 81)
+            .attr("height", 10)
+            .style("fill", "#79D08B");     
+    
+/* TIMELINE SPIN-OFF THREE ------------------------ */  
+    
+narrativeThree = timelinesvg.append("rect") // T3
+            .attr("x", 433)
+            .attr("y", 150)
+            .attr("width", 172)
+            .attr("height", 10)
+            .style("fill", "#5298C4");
+    
+timelinesvg.append("circle") // T3 Hover
+        .attr("cx", 433)
         .attr("cy", 155)
         .attr("r", 10)
         .style("fill", "white")
-        .style("stroke", "black");
-timelinesvg.append("circle") // T4 Creation
-        .attr("cx", 550)
+        .style("stroke", "black")
+        .on("mouseover", function(d) {
+            narrativeOne.style("fill-opacity", "0.5");
+            narrativeTwo.style("fill-opacity", "0.5");
+            narrativeFive.style("fill-opacity", "0.5");
+            narrativeFour.style("fill-opacity", "0.5");
+            narrativeSix.style("fill-opacity", "0.5");    
+    
+            timelineTwo.style("fill-opacity", "0.5");
+            timelineFive.style("fill-opacity", "0.5");
+            timelineFour.style("fill-opacity", "0.5");
+            timelineSix.style("fill-opacity", "0.5");    
+        })
+        .on("mouseout", function(d) {
+            narrativeOne.style("fill-opacity", "1");
+            narrativeTwo.style("fill-opacity", "1");
+            narrativeFive.style("fill-opacity", "1");
+            narrativeFour.style("fill-opacity", "1");
+            narrativeSix.style("fill-opacity", "1");    
+    
+            timelineTwo.style("fill-opacity", "1");
+            timelineFive.style("fill-opacity", "1");
+            timelineFour.style("fill-opacity", "1");
+            timelineSix.style("fill-opacity", "1");    
+        });
+    
+timelineThree = timelinesvg.append("rect") // Solo timeline
+            .attr("x", 433)
+            .attr("y", 250)
+            .attr("width", 172)
+            .attr("height", 10)
+            .style("fill", "#5298C4");     
+    
+/* TIMELINE SPIN-OFF FOUR ------------------------ */    
+narrativeFour = timelinesvg.append("rect") // T4
+            .attr("x", 605)
+            .attr("y", 150)
+            .attr("width", 60)
+            .attr("height", 10)
+            .style("fill", "#4740AB");
+    
+timelinesvg.append("circle") // T4 Hover
+        .attr("cx", 605)
         .attr("cy", 155)
         .attr("r", 10)
         .style("fill", "white")
@@ -160,25 +441,44 @@ timelinesvg.append("circle") // T4 Creation
             narrativeTwo.style("fill-opacity", "0.5");
             narrativeThree.style("fill-opacity", "0.5");
             narrativeFive.style("fill-opacity", "0.5");
+            narrativeSix.style("fill-opacity", "0.5");    
     
-            timelineOne.style("fill-opacity", "0.5");
             timelineTwo.style("fill-opacity", "0.5");
             timelineThree.style("fill-opacity", "0.5");
             timelineFive.style("fill-opacity", "0.5");
+            timelineSix.style("fill-opacity", "0.5");    
         })
         .on("mouseout", function(d) {
             narrativeOne.style("fill-opacity", "1");
             narrativeTwo.style("fill-opacity", "1");
             narrativeThree.style("fill-opacity", "1");
             narrativeFive.style("fill-opacity", "1");
+            narrativeSix.style("fill-opacity", "1");    
     
-            timelineOne.style("fill-opacity", "1");
             timelineTwo.style("fill-opacity", "1");
             timelineThree.style("fill-opacity", "1");
             timelineFive.style("fill-opacity", "1");
+            timelineSix.style("fill-opacity", "1");    
         });
+
+timelineFour = timelinesvg.append("rect") // Solo timeline
+            .attr("x", 605)
+            .attr("y", 300)
+            .attr("width", 60)
+            .attr("height", 10)
+            .style("fill", "#4740AB");   
+    
+/* TIMELINE SPIN-OFF FIVE ------------------------ */  
+    // NOTE: Width does not match time
+narrativeFive = timelinesvg.append("rect") // T5
+            .attr("x", 665)
+            .attr("y", 150)
+            .attr("width", 50)
+            .attr("height", 10)
+            .style("fill", "#906DAC");
+    
 timelinesvg.append("circle") // T5 Creation
-        .attr("cx", 650)
+        .attr("cx", 665)
         .attr("cy", 155)
         .attr("r", 10)
         .style("fill", "white")
@@ -188,106 +488,79 @@ timelinesvg.append("circle") // T5 Creation
             narrativeTwo.style("fill-opacity", "0.5");
             narrativeThree.style("fill-opacity", "0.5");
             narrativeFour.style("fill-opacity", "0.5");
+            narrativeSix.style("fill-opacity", "0.5");    
     
-            timelineOne.style("fill-opacity", "0.5");
             timelineTwo.style("fill-opacity", "0.5");
             timelineThree.style("fill-opacity", "0.5");
             timelineFour.style("fill-opacity", "0.5");
+            timelineSix.style("fill-opacity", "0.5");    
         })
         .on("mouseout", function(d) {
             narrativeOne.style("fill-opacity", "1");
             narrativeTwo.style("fill-opacity", "1");
             narrativeThree.style("fill-opacity", "1");
             narrativeFour.style("fill-opacity", "1");
+            narrativeSix.style("fill-opacity", "1");    
     
-            timelineOne.style("fill-opacity", "1");
             timelineTwo.style("fill-opacity", "1");
             timelineThree.style("fill-opacity", "1");
             timelineFour.style("fill-opacity", "1");
-        });
+            timelineSix.style("fill-opacity", "1");    
     
-/** SPIN OFF TIMELINES -------------------------------*/
-    
-var timelineOne;
-var timelineTwo;
-var timelineThree;
-var timelineFour;
-var timelineFive;
-    
-// Timeline 1 rectangle - Barry prevents the Tsunami
-timelineOne = timelinesvg.append("rect")
-            .attr("x", 200)
-            .attr("y", 250)
-            .attr("width", 150)
-            .attr("height", 10)
-            .style("fill", "#E0D277");
-// Timeline 1 text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 280)
-        .attr("font-size", 20)
-        .text("FIRST SPIN-OFF TIMELINE")
-        .style("fill", "#2a2a2a");
-    
-// Timeline 2 rectangle - Barry tries to save his mother
-timelineTwo = timelinesvg.append("rect")
-            .attr("x", 350)
-            .attr("y", 350)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#79D08B");
-// Timeline 2 text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 380)
-        .attr("font-size", 20)
-        .text("SECOND SPIN-OFF TIMELINE")
-        .style("fill", "#2a2a2a");        
+        });        
 
-// Timeline 3 rectangle - Barry talks to Dr.Wells
-timelineThree = timelinesvg.append("rect")
-            .attr("x", 450)
-            .attr("y", 450)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#5298C4");
-// Timeline 3 text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 480)
-        .attr("font-size", 20)
-        .text("THIRD SPIN-OFF TIMELINE")
-        .style("fill", "#2a2a2a");        
-    
-// Timeline 4 rectangle - Barry creates Flashpoint
-timelineFour = timelinesvg.append("rect")
-            .attr("x", 550)
-            .attr("y", 550)
-            .attr("width", 100)
-            .attr("height", 10)
-            .style("fill", "#4740AB");
-// Timeline 4 text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 580)
-        .attr("font-size", 20)
-        .text("FLASHPOINT")
-        .style("fill", "#2a2a2a");   
-    
-// Timeline 5 rectangle
-timelineFive = timelinesvg.append("rect")
-            .attr("x", 650)
-            .attr("y", 650)
-            .attr("width", 150)
+timelineFive = timelinesvg.append("rect") // Solo timeline
+            .attr("x", 665)
+            .attr("y", 350)
+            .attr("width", 50)
             .attr("height", 10)
             .style("fill", "#906DAC");
-// Timeline 5 text
-timelinesvg.append("text")
-        .attr("x", 600)
-        .attr("y", 680)
-        .attr("font-size", 20)
-        .text("FIXING FLASHPOINT")
-        .style("fill", "#2a2a2a");
+    
+/* TIMELINE SPIN-OFF SIX ------------------------ */  
+narrativeSix = timelinesvg.append("rect") // T5
+            .attr("x", 716)
+            .attr("y", 150)
+            .attr("width", 85)
+            .attr("height", 10)
+            .style("fill", "#FF7700");
+    
+timelinesvg.append("circle") // T5 Creation
+        .attr("cx", 715)
+        .attr("cy", 155)
+        .attr("r", 10)
+        .style("fill", "white")
+        .style("stroke", "black")
+        .on("mouseover", function(d) {
+            narrativeOne.style("fill-opacity", "0.5");
+            narrativeTwo.style("fill-opacity", "0.5");
+            narrativeThree.style("fill-opacity", "0.5");
+            narrativeFour.style("fill-opacity", "0.5");
+            narrativeFive.style("fill-opacity", "0.5");
+    
+            timelineTwo.style("fill-opacity", "0.5");
+            timelineThree.style("fill-opacity", "0.5");
+            timelineFour.style("fill-opacity", "0.5");
+            timelineFive.style("fill-opacity", "0.5");
+        })
+        .on("mouseout", function(d) {
+            narrativeOne.style("fill-opacity", "1");
+            narrativeTwo.style("fill-opacity", "1");
+            narrativeThree.style("fill-opacity", "1");
+            narrativeFour.style("fill-opacity", "1");
+            narrativeFive.style("fill-opacity", "1");
+    
+            timelineTwo.style("fill-opacity", "1");
+            timelineThree.style("fill-opacity", "1");
+            timelineFour.style("fill-opacity", "1");
+            timelineFive.style("fill-opacity", "1");
+        });        
+
+timelineSix = timelinesvg.append("rect") // Solo timeline
+            .attr("x", 715)
+            .attr("y", 400)
+            .attr("width", 85)
+            .attr("height", 10)
+            .style("fill", "#FF7700");
       
 </script>
 </body>
